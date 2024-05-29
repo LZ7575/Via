@@ -1,0 +1,25 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: app-ingress
+  namespace: database
+spec:
+  ingressClassName: "nginx"
+  rules:
+    - host: bitcoin.local
+      http:
+        paths:
+          - path: /redis
+            pathType: Prefix
+            backend:
+              service:
+                name: redis-service
+                port:
+                  number: 80
+          - path: /api
+            pathType: Prefix
+            backend:
+              service:
+                name: api-service
+                port:
+                  number: 80
