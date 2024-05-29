@@ -15,11 +15,11 @@ spec:
               service:
                 name: redis-service
                 port:
-                  number: 80
+                  number: 6379
           - path: /api
             pathType: Prefix
             backend:
               service:
                 name: api-service
                 port:
-                  number: 80
+                  number: 3000

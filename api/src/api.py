@@ -26,11 +26,8 @@ async def root() -> dict:
 async def add_data(value: db.Bitcoin, database: Redis = Depends(get_redis)) -> None:
     database.set(value.timestamp, value.price)
     
-
-# # Get data from database
+# Get data from database
 @app.get("/get")
 async def get_data(database: Redis = Depends(get_redis)) -> dict:
     keys = database.keys()
     return keys.__dict__
-    # for key in keys:
-    #     print(f'{key}: {database.get(key)}')
